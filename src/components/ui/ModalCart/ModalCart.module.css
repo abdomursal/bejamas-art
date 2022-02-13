@@ -1,0 +1,62 @@
+.container {
+  border-style: solid;
+  border-width: 4px;
+  border-color: #e4e4e4;
+  width: 443px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  top: 6.70rem;
+  right: 1rem;
+}
+
+.modalWrapper {
+  width: 90%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.exitButtonWrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+.exitImage {
+  cursor: pointer;
+}
+.productItemWrapper {
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+  display: grid;
+}
+.button {
+  height: 55px;
+  border-style: solid;
+  border-width: 3px;
+  text-align: center;
+  border-color: black;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  background-color: white;
+  margin-top: 15px;
+}
+.button:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 20rem;
+    top: 5.2rem;
+    right: .5rem;    
+  }
+}

@@ -1,0 +1,22 @@
+
+.primary{
+    background-color: black;
+    height: 47px;
+    width: 257px;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size: 23px;
+    font-weight: 500;
+    border: 0;
+}
+.secondary{
+    background-color: white;
+    height: 47px;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 23px;
+    font-weight: 500;
+    border: 2px 2px solid black;
+}

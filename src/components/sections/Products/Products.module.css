@@ -1,0 +1,137 @@
+.contianer{
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-gap: 20px;
+}
+
+.product_section_header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px 0;
+}
+.sortMobile{
+  display:none;
+}
+.sortWrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sortBy{
+  color:#9B9B9B;
+  font-size: 22px;
+  font-weight: 400;
+}
+.sortArrowIcon{
+  cursor: pointer;
+}
+.selectWrapper{
+  display: flex;
+  align-items: center;
+  align-items: center;
+  gap: 10px;
+}
+.price{
+  color:black;
+  font-size: 22px;
+  font-weight: 400;
+}
+.mainSectionTitle{
+  font-size: 30px;
+  font-weight: 700;
+}
+.filterdTitle{
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+  color: #9B9B9B;
+}
+.mainSection{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 50px;
+
+}
+.filterSection{
+
+  /* /* border-style: solid; */
+  border-color: black; 
+}
+.productsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 52px 48px;
+}
+.paginationWrapper{
+    /* border-style: solid;
+  border-color: green; */
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  align-items: center;
+}
+.sortMobileIcone{
+  display: none;
+}
+.sortDesktop{
+  gap: .5rem;  
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sortSelect{
+  border: 0;
+  font-size: 22px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+
+@media (max-width:600px){
+  .contianer{
+      padding: 10px;
+  }
+  .sortMobile{
+      display:none;
+  }
+  .sortDesktop{
+      display:none;
+  }
+  .mainSection{
+      grid-template-columns: 1fr;
+  }
+  .productsWrapper{
+      grid-template-columns: 1fr;
+  }
+  .mainSectionTitle{
+      font-size: 18px;
+  }
+  .filterdTitle{
+      font-size: 18px;
+  }
+  .filterSection{
+      display:none
+  }
+  .sortMobileIcone{
+    display: block;
+    cursor: pointer;
+  } 
+  .sortSelect {
+    display: none;
+  }
+  .sortBy{
+    display: none;
+  }
+  .product_section_header{
+    padding: 20px 0;
+  }
+  .sortArrowIcon{
+    display: none;
+  }
+  
+}

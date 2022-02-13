@@ -1,0 +1,30 @@
+
+.container{
+    height: 27px;
+    width: 188px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+}
+.pageNumber{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 29px;
+    color:#B4B4B4;
+}
+.pageText:hover {
+    cursor: pointer;
+    color: white;
+}
+.arrowWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: var(--visibility, visible);
+    cursor: pointer;
+}
+.image_wrapper:hover{
+    cursor: pointer;
+}

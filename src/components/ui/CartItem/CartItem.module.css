@@ -1,0 +1,26 @@
+.container {
+  border-bottom-width: 1px;
+  border-bottom-color: #c2c2c2;
+  border-bottom-style: solid;
+  padding: 17px 0px;
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+  justify-content: space-between;
+}
+.InfoSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.title {
+  font-family: Archivo;
+  font-weight: bold;
+  font-size: 20px;
+}
+.price {
+  font-size: 29px;
+  color: #656565;
+}
+.imageWrapper{
+  display: grid;
+}

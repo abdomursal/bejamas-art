@@ -1,0 +1,45 @@
+.container {
+  height: 67px;
+  width: 64px;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.counterTextWrap {
+  display: flex;
+  justify-content: center;
+}
+.counterBox {
+  background-color: black;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.counterText {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 42px;
+    height: 42px;
+  }
+
+  .counterBox {
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 5px;
+    padding-bottom: -20px;
+  }
+  .counterText {
+    font-size: 15px;
+  }
+}

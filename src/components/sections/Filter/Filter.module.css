@@ -1,0 +1,16 @@
+.categorySectionWrapper{
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #C2C2C2;
+    padding: 2rem 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.filterType{
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 24px;
+
+}

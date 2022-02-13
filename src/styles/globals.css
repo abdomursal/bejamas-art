@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght&display=swap");
+html {
+  font-family: "Archivo", sans-serif;
+}
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+p,
+h4 {
+  font-family: "Archivo", sans-serif;
+}
