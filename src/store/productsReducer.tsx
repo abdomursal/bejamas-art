@@ -1,9 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { ProductTypes } from "src/types/store/product";
 import { getfeaturedProduct } from "src/utils/featuredProduct";
-import { filter } from "src/utils/FilterUtils";
 
-// import { filter} from 'src/utils/filterUtils'
 
 export const initialState: ProductTypes = {
   products: [],
@@ -12,74 +10,75 @@ export const initialState: ProductTypes = {
     products: [],
     filterType: "",
     filterItems: [],
+    filterCategoryItems: [],
+    filterPriceItems: [],
     sortType: "",
   },
 };
-
 
 export const ProductSlice = createSlice({
   name: "store",
   initialState,
   reducers: {
-    // storefeaturedProduct: (state, action) => {
-    //   return { ...state, featuredProduct: action.payload };
-    // },
     addFilterItem: (state: any, action) => {
       const filterArray = [];
-      const filterItems=state.processedProducts.filterItems
-      let products = action.payload.orignalProducts;
+      const products = current(state.processedProducts.products)
+      const filterType = action.payload.type;
+      const filterItems = state.processedProducts[filterType];
+      //check the repeated items and push only unique items to the filteritems[]
       if (filterItems.indexOf(action.payload.value) == -1) {
         filterArray.push(action.payload.value);
       }
-    
+      if (filterType === "filterCategoryItems") {
+        return {
+          ...state,
+          processedProducts: {
+            ...state.processedProducts,
+            filterCategoryItems: [
+              ...state.processedProducts[filterType],
+              ...filterArray,
+            ],
+          },
+        };
+      }
       return {
         ...state,
         processedProducts: {
           ...state.processedProducts,
-          filterItems: [...state.processedProducts.filterItems, ...filterArray],
+          filterPriceItems: [
+            ...state.processedProducts[filterType],
+            ...filterArray,
+          ],
         },
       };
     },
+
     removeFilterItem: (state: any, action) => {
-      const filterArray = state.processedProducts.filterItems;
+      const filterType = action.payload.type;
+      const filterArray = state.processedProducts[filterType];
+
+      
       let x = filterArray.filter((item) => {
         return item != action.payload.value;
       });
-
+      if (filterType === "filterCategoryItems") {
+        return {
+          ...state,
+          processedProducts: {
+            ...state.processedProducts,
+            filterCategoryItems: [...x],
+          },
+        };
+      }
       return {
         ...state,
         processedProducts: {
           ...state.processedProducts,
-          filterItems: [...x],
+          filterPriceItems: [...x],
         },
       };
     },
-    //  filterProducts:(state:any, action)=>{
-    //   let filterdProducts =[]
-    //   const orignalProducts =action.payload
-    //   const filterItems = action.payload.filterItems
-    //   if(filterItems != []){
-    //     // filterdProducts= orignalProducts?.filter((item)=> filterItems.includes(item.category))
 
-    //     return {
-    //       ...state,
-    //       products: action.payload,
-    //       processedProducts: {
-    //         ...state.processedProducts,
-    //         products: []
-    //     }
-    //   }
-    // }
-    //   else
-    //   return{
-    //      ...state,
-    //     products: action.payload,
-    //     processedProducts: {
-    //       ...state.processedProducts,
-    //       products: []
-    //     }
-    //   }
-    // },
     featuredProduct: (state: any, action) => {
       return getfeaturedProduct(state, action);
     },
@@ -95,35 +94,10 @@ export const ProductSlice = createSlice({
       };
     },
   },
-
-  // categoryFilter: (state, action) => {
-  //   // filter products list  based on the categories choosen
-  // },
-  // priceFilter: (state, action) => {
-  //   // filter products list based on the price range choosen
-  // },
-  // sortByPrice: (state) => {
-
-  // },
-  // sortByAlphabet: () => {
-  //   //sort product list based on alphabets
-  // },
-  // },
 });
 
-export const {
-  // categoryFilter,
-  // priceFilter,
-  // sortByPrice,
-  // sortByAlphabet,
-  // storeProcessedProducts,
-  filterProducts,
-  removeFilterItem,
-  addFilterItem,
-  // storefeaturedProduct,
-  featuredProduct,
-  storeData,
-} = ProductSlice.actions;
+export const { removeFilterItem, addFilterItem, featuredProduct, storeData } =
+  ProductSlice.actions;
 
 export default ProductSlice.reducer;
 

@@ -1,14 +1,10 @@
 import { CategoryTypes, PriceTypes } from "./filter"
 import { ProductItemTypes } from "./product"
 
-export type FilteredArg = {
-    type: "category" | "price";
-    value: string;
-  };
 
 export type processedProductTypes={
     products:Array<ProductItemTypes>
-    filterTypes:FilteredArg
+    filterTypes: "category" | "price"
     filterCategoryItem:Array<CategoryTypes>
     filterPriceItem:Array<PriceTypes>
 

@@ -9,15 +9,13 @@ import {storeData } from "src/store/productsReducer";
 
 const PaginationBar = () => {
   const dispatch = useDispatch();
-  // const products = useSelector((state: any) => state.data.products);
   const currPage = useSelector((state: any) => state.pagination.activePage);
   const pages = useSelector((state: any) => state.pagination.pages);
   const count = useSelector((state: any) => state.pagination.count);
 
-  const getData = (page)=>{
+  const getData = (page: number)=>{
     const products = getProducts(page);
     dispatch(storeData(products.data))
-    // dispatch(storeProcessedProducts(products.data))
     dispatch(storeCount(products.count))
     dispatch(changePage(products.page))
   }
@@ -41,7 +39,7 @@ const PaginationBar = () => {
           <Image src="/images/arrow_left.png" height={16} width={8} />
         </div>
       )}
-      {pages.map((page, index) => {
+      {pages.map((page : number, index : number) => {
         return (
           <div
             key={index}
@@ -56,7 +54,6 @@ const PaginationBar = () => {
       {currPage !== count && (
         <div
           className={style.arrowWrapper}
-          // style={{ visibility: nextButtonVisibilty }}
           onClick={() => nextPageHandler()}
         >
           <Image src="/images/arrow_right.png" height={16} width={8} />
