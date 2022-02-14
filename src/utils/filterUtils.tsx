@@ -15,23 +15,48 @@ const categories =[
 
 ]
 
-
-export const filter = (filterArray,products) => {
-  // get all the values from filter array 
-  const newProducts = []
-  filterArray?.map(el=>{
-    if(el.type==='category'){
-      const filteredCategory = products.filter(product=>product.category.toLowerCase()===el.value.toLowerCase())
-      newProducts.push(filteredCategory)
+  
+  export const filterCategory = (categoryItems, orignalProducts) => {
+    let resultFilterProducts = [];
+    let x = [...orignalProducts];
+    if (categoryItems != []) {
+      resultFilterProducts = x.filter((item) =>
+      categoryItems?.includes(item.category)
+      );
+      return resultFilterProducts;
     }
-    // else if(el.type === 'price'){
-    //   const value = el.value.split('-');
-    //   value[0]
-    //   const filteredPrice = products.filter(product=> value[1] >=product.price >= value[0] )
-    //   newProducts.push([...filteredPrice])
-    // }
-  });
-  // const data:any =  [...new Set(newProducts?.map(item => item.id))];
-  return newProducts
+  };
 
+
+ export const filterPrice = (priceItems, orignalProducts, filterdCategoryData, processedProducts) => {
+    let resultFilterProducts = [];
+    let x = [...orignalProducts];
+    if (filterdCategoryData.length <= 0) {
+      if (priceItems !== []) {
+        const value = priceItems[0]
+          ? priceItems[0].split("-")
+          : undefined;
+        if (value) {
+          resultFilterProducts = processedProducts.filter((product) => {
+            return value[0] <= product.price && product.price <= value[1];
+          });
+          console.log("textFunc", resultFilterProducts);
+        }
+      }
+      return resultFilterProducts;
+    }
+    else{
+    if (priceItems !== []) {
+      const value = priceItems[0]
+        ? priceItems[0].split("-")
+        : undefined;
+      if (value) {
+        resultFilterProducts = filterdCategoryData.filter((product) => {
+          return value[0] <= product.price && product.price <= value[1];
+        });
+      }
+    }
+    return resultFilterProducts;
+    
+  }
 };

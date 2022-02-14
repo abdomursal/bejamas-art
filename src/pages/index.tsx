@@ -32,8 +32,8 @@ function IndexPage({ products, cart, page, count }) {
 
   return (
     <>
+    <link rel="shortcut icon" href="favicon/favicon.ico"></link>
       {modal && <ModalCart items={cartItem} />}
-
       <Header />
       {/* <FeaturedProduct/> */}
 
@@ -42,7 +42,7 @@ function IndexPage({ products, cart, page, count }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const products = getProducts(1);
   return {
     props: {
