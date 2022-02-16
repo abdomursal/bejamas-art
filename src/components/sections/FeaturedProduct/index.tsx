@@ -6,30 +6,28 @@ import featuredImage from "public/images/featuredProduct.png";
 import { useDispatch, useSelector } from "react-redux";
 import { modalCart } from "src/store/testReducer";
 import { addCart } from "src/store/cartReducer";
-import { RootState } from "src/store";
-
-// const discription =
-//   " So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book.So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book.So how did the classical Latin become so incoherent? According to McClintock.";
 
 const myLoader = ({ src, width, quality }) => {
   return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
 };
 
 const FeaturedProduct = () => {
+  const isFilterModalOpen= useSelector((state:any)=> state.modal.modalFilter)
   const featuredProduct = useSelector(
     (state: any) => state.product.featuredProduct
   );
-  const { image, name, details, category, recommendations } = featuredProduct;
-  const { dimmentions, description, size } = details;
+  const { name, details, category } = featuredProduct;
+
   const dispatch = useDispatch();
 
+  
   const openModalHandle = () => {
     dispatch(addCart(featuredProduct));
     dispatch(modalCart());
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{display:isFilterModalOpen?'none':'grid'}}>
       <div className={styles.header}>
         <a className={styles.featureTitle}>{name}</a>
         <Button
@@ -41,16 +39,18 @@ const FeaturedProduct = () => {
       </div>
       <div className={styles.featureImageWrapper}>
         <Image
-          placeholder="blur"
-          loader={myLoader}
-          onLoadingComplete={() => myLoader}
+          // placeholder="blur"
+          // loader={myLoader}
+          // onLoadingComplete={() => myLoader}
           alt="Bejamas-featuredProduct"
-          blurDataURL={`${featuredImage}`}
+          // blurDataURL={`${featuredImage}`}
           src={
             "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
           }
+          // height={300}
+          // width={400}
           layout="fill"
-          objectFit="cover"
+          // objectFit="cover"
         />
         <div className={styles.featureTagWrapper}>
           <a> Photo of the day</a>
@@ -66,7 +66,7 @@ const FeaturedProduct = () => {
         <div className={styles.featureDescriptionWrapper}>
           <h3 className={styles.featureTitle}>About the {name}</h3>
           <a className={styles.categoryName}>{category}</a>
-          <p className={styles.descriptionText}>{description}</p>
+          <p className={styles.descriptionText}>{details?.description}</p>
         </div>
         <div className={styles.featureRecommandationWrapper}>
           <h3 className={styles.recommendationTitle}>People also buy</h3>
@@ -78,9 +78,9 @@ const FeaturedProduct = () => {
           <div className={styles.recomendationDetailsWrapper}>
             <a className={styles.detailsSizeTitle}>Details</a>
             <p className={styles.sizes}>
-              Size:{dimmentions.height}x{dimmentions.width} pixel
+              Size:{details?.dimmentions.height}x{details?.dimmentions.width} pixel
             </p>
-            <p className={styles.sizes}>Size: {size} ms </p>
+            <p className={styles.sizes}>Size: {details?.size} ms </p>
           </div>
         </div>
       </div>

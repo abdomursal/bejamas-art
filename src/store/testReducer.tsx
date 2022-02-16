@@ -13,9 +13,12 @@ export const modalSlice = createSlice({
     modalCart: (state: any) => {
       return { ...state, modalCart: !state.modalCart };
     },
+    modalFilter: (state: any) => {
+      return { ...state, modalFilter: !state.modalFilter };
+    },
   },
 });
 
-export const { modalCart } = modalSlice.actions;
+export const { modalCart, modalFilter } = modalSlice.actions;
 
 export default modalSlice.reducer;

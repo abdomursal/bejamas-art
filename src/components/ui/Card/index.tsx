@@ -42,6 +42,7 @@ const Card = ({
             alt={alt}
             height={399}
             width={282}
+            priority
           />
         </div>
         {hover && (

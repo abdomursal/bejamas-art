@@ -1,58 +1,35 @@
-export type sortType = "alphabet" | "price";
+import { ProductItemTypes } from "src/types/store/product";
 
-type SortProps = {
-  data: any
-  type: sortType;
-  reverse: boolean;
+export type sortType = "name" | "price";
+
+export type SortProps = {
+  type?: sortType;
+  data: Array<ProductItemTypes> | [];
+  reverse?: boolean;
 };
 
-export const sortUtils = (type, data, reverse=false ) => {
+export const sortUtils = (type, data, reverse) => {
   if (!data || data.length === 0) {
     return data;
   }
+
   const newData = [...data];
-    if (type === "alphabet") {
-    let sortedAlphabet = newData.sort((a, b) => {
-      if (reverse) {
-        if (a > b) {
-          return -1;
-        } else if (a > b) {
-          return 1;
-        }
-      } else {
-        if (a < b) {
-          return -1;
-        } else if (a < b) {
-          return 1;
-        }
+  let sorted = newData.sort((a, b) => {
+    if (reverse) {
+      if (a[type] > b[type]) {
+        return -1;
+      } else if (a[type] > b[type]) {
+        return 1;
       }
-      return 0;
-    });
-
-    return sortedAlphabet;
-  }
-
-  if (type === "price") {
-    let sortedAlphabet = newData.sort((a, b) => {
-      if (reverse) {
-        if (a > b) {
-          return -1;
-        } else if (a > b) {
-          return 1;
-        }
-      } else {
-        if (a < b) {
-          return -1;
-        } else if (a < b) {
-          return 1;
-        }
+    } else {
+      if (a[type] < b[type]) {
+        return -1;
+      } else if (a[type] < b[type]) {
+        return 1;
       }
-      return 0;
-    });
+    }
+    return 0;
+  });
 
-    return sortedAlphabet;
-  }
-
-
-  }
-
+  return sorted;
+};

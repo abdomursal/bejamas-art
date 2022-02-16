@@ -9,22 +9,22 @@ import { Categories } from "src/constant/Category";
 import { Prices } from "src/constant/Prices";
 import NotFound from "../NotFound/NotFound";
 import { filterCategory, filterPrice } from "src/utils/filterUtils";
+import { sortUtils } from "src/utils/sortUtils";
+import { getSortType } from "src/store/productsReducer";
+import { modalFilter } from "src/store/testReducer";
 
-const Products = () => {
-  const orignalProducts = useSelector((state: any) => state.product.products);
+const Products = ({isOpenModal}) => {
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
+  const [sortOrder, setSortOrder] = useState(false) // sort name/price orders 
+  const sortType = useSelector((state: any) => state.product.processedProducts.sortType);
+  const orignalProducts = useSelector((state: any) => state.product.products);
   const page = useSelector((state: any) => state.pagination.pages);
-  const filterCategoryItems = useSelector(
-    (state: any) => state.product.processedProducts.filterCategoryItems
-  );
-  const filterPriceItems = useSelector(
-    (state: any) => state.product.processedProducts.filterPriceItems
-  );
+  const filterCategoryItems = useSelector((state: any) => state.product.processedProducts.filterCategoryItems);
+  const filterPriceItems = useSelector((state: any) => state.product.processedProducts.filterPriceItems);
+  const processedProducts = useSelector((state: any) => state.product.processedProducts.products);
 
-  const processedProducts = useSelector(
-    (state: any) => state.product.processedProducts.products
-  );
-
+  
   useEffect(() => {
     setData(filterCategory(filterCategoryItems, orignalProducts));
     if (filterPriceItems.length > 0) {
@@ -32,13 +32,23 @@ const Products = () => {
         filterPrice(filterPriceItems, orignalProducts, data, processedProducts)
       );
     }
-  }, [filterCategoryItems, filterPriceItems, page]);
+    if(sortType){
+      setData(sortUtils(sortType, displayProduct, sortOrder))
+    }
+   
+  }, [filterCategoryItems, filterPriceItems, page, sortOrder]);
 
   const displayProduct = data?.length > 0 ? data : processedProducts;
   const diplayNotFound =
     data.length <= 0 &&
     (filterCategoryItems.length > 0 || filterPriceItems.length > 0);
 
+  const getSortTypeHandler = (e) => {
+    dispatch(getSortType(e.target.value));
+   
+  };
+
+  
 
   return (
     <div className={styles.contianer}>
@@ -48,22 +58,22 @@ const Products = () => {
           <a className={styles.filterdTitle}>/Premuim Art</a>
         </span>
         <span className={styles.sortWrapper}>
-          <span className={styles.sortMobileIcone}>
+          <div onClick={()=> dispatch(modalFilter())} className={styles.sortMobileIcone}>
             <Image
               src={"/images/filterMobileIcon.png"}
               height={29}
               width={29}
             />
-          </span>
+          </div>
 
           <form className={styles.selectWrapper}>
-            <div className={styles.sortArrowIcon}>
+            <div onClick={()=> setSortOrder(!sortOrder)} className={styles.sortArrowIcon}>
               <Image src={"/images/sort.png"} height={18} width={18} />
             </div>
             <label className={styles.sortBy}>Sort By</label>
-            <select className={styles.sortSelect}>
-              <option value="Price">Price</option>
-              <option value="Order">Order</option>
+            <select onChange={getSortTypeHandler} className={styles.sortSelect}>
+              <option value="price">Price</option>
+              <option value="name">Order</option>
             </select>
           </form>
         </span>
@@ -83,7 +93,7 @@ const Products = () => {
             filterName="price"
           />
         </div>
-        <div>
+        <div style={{display:isOpenModal?'none':'block'}}>
           <div className={styles.productsWrapper}>
             {diplayNotFound ? (
               <NotFound />
@@ -111,6 +121,7 @@ const Products = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

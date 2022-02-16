@@ -2,7 +2,6 @@ import { createSlice, current } from "@reduxjs/toolkit";
 import { ProductTypes } from "src/types/store/product";
 import { getfeaturedProduct } from "src/utils/featuredProduct";
 
-
 export const initialState: ProductTypes = {
   products: [],
   featuredProduct: [],
@@ -22,7 +21,7 @@ export const ProductSlice = createSlice({
   reducers: {
     addFilterItem: (state: any, action) => {
       const filterArray = [];
-      const products = current(state.processedProducts.products)
+      const products = current(state.processedProducts.products);
       const filterType = action.payload.type;
       const filterItems = state.processedProducts[filterType];
       //check the repeated items and push only unique items to the filteritems[]
@@ -52,12 +51,20 @@ export const ProductSlice = createSlice({
         },
       };
     },
+    getSortType: (state, action) => {
+      return {
+        ...state,
+        processedProducts: {
+          ...state.processedProducts,
+          sortType: action.payload,
+        },
+      };
+    },
 
     removeFilterItem: (state: any, action) => {
       const filterType = action.payload.type;
       const filterArray = state.processedProducts[filterType];
 
-      
       let x = filterArray.filter((item) => {
         return item != action.payload.value;
       });
@@ -96,8 +103,13 @@ export const ProductSlice = createSlice({
   },
 });
 
-export const { removeFilterItem, addFilterItem, featuredProduct, storeData } =
-  ProductSlice.actions;
+export const {
+  removeFilterItem,
+  addFilterItem,
+  featuredProduct,
+  storeData,
+  getSortType,
+} = ProductSlice.actions;
 
 export default ProductSlice.reducer;
 

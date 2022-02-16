@@ -13,14 +13,14 @@ export interface ProductItemTypes {
     };
     bestseller: boolean;
     featured?: boolean;
-    details: {
+    details?: {
       dimmentions: {
         width: number;
         height: number;
       };
       size: number;
       description: string;
-      recommendations: [
+      recommendations?: [
         {
           src: string;
           alt: string;

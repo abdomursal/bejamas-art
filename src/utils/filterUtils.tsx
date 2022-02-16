@@ -40,7 +40,6 @@ const categories =[
           resultFilterProducts = processedProducts.filter((product) => {
             return value[0] <= product.price && product.price <= value[1];
           });
-          console.log("textFunc", resultFilterProducts);
         }
       }
       return resultFilterProducts;

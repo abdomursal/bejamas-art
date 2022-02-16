@@ -12,17 +12,7 @@ const CheckBox = ({
 }: CheckBoxProps) => {
   const checkBoxRef = useRef();
 
-  const processedProducts = useSelector(
-    (state: any) => state.product.processedProducts.products
-  );
-  const filterItems = useSelector(
-    (state: any) => state.product.processedProducts.filterItems
-  );
-
-  const orignalProducts = useSelector((state: any) => state.product.products);
-
   const dispatch = useDispatch();
-
   const onChange = (e) => {
     if (e.target.checked) {
       dispatch(addFilterItem({ type: filterType, value: value }));

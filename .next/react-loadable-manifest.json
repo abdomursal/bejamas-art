@@ -4,5 +4,11 @@
     "files": [
       "static/chunks/src_components_ui_ModalCart_index_tsx.js"
     ]
+  },
+  "index.tsx -> src/components/ui/ModalFilter": {
+    "id": "index.tsx -> src/components/ui/ModalFilter",
+    "files": [
+      "static/chunks/src_components_ui_ModalFilter_index_tsx.js"
+    ]
   }
 }

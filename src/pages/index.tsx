@@ -11,12 +11,18 @@ import dynamic from "next/dynamic";
 const ModalCart = dynamic(() => import("src/components/ui/ModalCart"), {
   ssr: false,
 });
+const ModalFilter = dynamic(() => import("src/components/ui/ModalFilter"), {
+  ssr: false,
+});
 
 function IndexPage({ products, cart, page, count }) {
   const state = useSelector((state: any) => state.product);
 
-  const modal = useSelector((state: any) => state.modal.modalCart);
+  const modalCart = useSelector((state: any) => state.modal.modalCart);
+  const modalFilter = useSelector((state: any) => state.modal.modalFilter);
+
   const cartItem = useSelector((state: any) => state.cart.cart);
+
   const featuredProductState = useSelector(
     (state: any) => state.product.featuredProduct
   );
@@ -28,16 +34,15 @@ function IndexPage({ products, cart, page, count }) {
     dispatch(storeCount(count));
     dispatch(featuredProduct(products));
   }, []);
-
-
+  
   return (
     <>
-    <link rel="shortcut icon" href="favicon/favicon.ico"></link>
-      {modal && <ModalCart items={cartItem} />}
+    <link rel="shortcut icon" href="favicon/favicon.ico"/>
+      {modalCart && <ModalCart items={cartItem} />}
       <Header />
-      {/* <FeaturedProduct/> */}
-
-      <Products />
+      <FeaturedProduct/>
+      {modalFilter && <ModalFilter />}
+      <Products isOpenModal={modalFilter}/>
     </>
   );
 }
