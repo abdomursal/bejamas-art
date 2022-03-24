@@ -1,16 +1,16 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Filter from "src/components/sections/Filter";
 import { Categories } from "src/constant/Category";
 import { Prices } from "src/constant/Prices";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 import { storeData } from "src/store/productsReducer";
 import { modalFilter } from "src/store/testReducer";
 import Button from "../Button";
 
 import styles from "./ModalFilter.module.css";
 const ModalFilter = () => {
-    const dispatch = useDispatch()
-    const products = useSelector((state:any)=> state.product.products)
+    const dispatch = useAppDispatch()
+    const products = useAppSelector((state)=> state.product.products)
     const closeModal =()=>{
         dispatch(modalFilter())
         dispatch(storeData(products))

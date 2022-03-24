@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import styles from "./Card.module.css";
 import { CardProps } from "src/types/components/ui/Card";
 import { addCart } from "src/store/cartReducer";
 import { modalCart } from "src/store/testReducer";
 import Button from "../Button";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 const Card = ({
   bestSeller,
@@ -17,9 +17,9 @@ const Card = ({
 }: CardProps) => {
   const { src, alt } = image;
   const [hover, setHover] = useState(false);
-  const modal = useSelector((state: any) => state.modal.modalCart);
+  const modal = useAppSelector((state) => state.modal.modalCart);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const addtoCartHandelr = () => {
     dispatch(addCart(product));
     dispatch(modalCart());

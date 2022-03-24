@@ -27,6 +27,12 @@
 }
 .sortArrowIcon{
   cursor: pointer;
+  padding: .4rem;
+  border-radius: 1rem;
+}
+.sortArrowIcon:hover{
+  background-color: #9b9b9b48;
+  
 }
 .selectWrapper{
   display: flex;

@@ -2,13 +2,14 @@ import React from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 import IconCart from "src/components/ui/IconCart";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { modalCart } from "src/store/testReducer";
+import { useAppSelector } from "src/store/hooks";
 
 
 const Header = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state: any) => state.cart.cart);
+  const cartItems = useAppSelector((state) => state.cart.cart);
   const length = cartItems.length;
 
   

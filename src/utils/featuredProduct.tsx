@@ -1,5 +1,5 @@
 
-export const getfeaturedProduct = (state: any, action) => {
+export const getfeaturedProduct = (state, action) => {
     const featuredProduct = action.payload.find(
       (product) => product.featured == true
     )

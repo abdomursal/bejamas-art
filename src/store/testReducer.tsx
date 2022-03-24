@@ -1,19 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./store";
-import { getfeaturedProduct } from "src/utils/featuredProduct";
-import { findProductById } from "src/utils/cartUtils";
 
-// const initialState ={
-//   modalCart:
-// }
 export const modalSlice = createSlice({
   name: "store",
   initialState,
   reducers: {
-    modalCart: (state: any) => {
+    modalCart: (state) => {
       return { ...state, modalCart: !state.modalCart };
     },
-    modalFilter: (state: any) => {
+    modalFilter: (state) => {
       return { ...state, modalFilter: !state.modalFilter };
     },
   },

@@ -19,12 +19,10 @@ export const ProductSlice = createSlice({
   name: "store",
   initialState,
   reducers: {
-    addFilterItem: (state: any, action) => {
+    addFilterItem: (state, action) => {
       const filterArray = [];
-      const products = current(state.processedProducts.products);
       const filterType = action.payload.type;
       const filterItems = state.processedProducts[filterType];
-      //check the repeated items and push only unique items to the filteritems[]
       if (filterItems.indexOf(action.payload.value) == -1) {
         filterArray.push(action.payload.value);
       }
@@ -61,7 +59,7 @@ export const ProductSlice = createSlice({
       };
     },
 
-    removeFilterItem: (state: any, action) => {
+    removeFilterItem: (state, action) => {
       const filterType = action.payload.type;
       const filterArray = state.processedProducts[filterType];
 
@@ -86,11 +84,11 @@ export const ProductSlice = createSlice({
       };
     },
 
-    featuredProduct: (state: any, action) => {
+    featuredProduct: (state, action) => {
       return getfeaturedProduct(state, action);
     },
 
-    storeData: (state: any, action: any) => {
+    storeData: (state, action) => {
       return {
         ...state,
         products: action.payload,
@@ -112,27 +110,3 @@ export const {
 } = ProductSlice.actions;
 
 export default ProductSlice.reducer;
-
-// storeProcessedProducts: (state, action) => {
-//   //check if filter doesnt'have any filter or sort
-//   // const newProduct:Array<any> = [...action.payload]
-//   // if(state.filter.length>0){
-//   //   //filter data
-//   //  const filtered =  filter(state.filter, action.payload)
-//   //   newProduct.push([...filtered])
-//   // }
-
-//   // return { ...state, processedProducts: action.payload };
-// },
-//
-//
-// addFilter: (state, action) => {
-//   // `const newProduct =[]
-//   // if(state.filter.length>0){
-//   //   //filter data
-//   //  const filtered =  filter(state.filter, state.products)
-//   //   // newProduct.push([...filtered])
-//   // }
-//   // return { ...state, filter: [...state.filter, action.payload],
-//     // processedProducts:newProduct
-//   },

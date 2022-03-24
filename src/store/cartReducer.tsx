@@ -14,7 +14,7 @@ export const cartSlice = createSlice({
   name: "store",
   initialState,
   reducers: {
-    addCart: (state: CartTypes, action:any) => {
+    addCart: (state: CartTypes, action) => {
         const existingProduct = findProductById(state, action.payload.id);
         if (existingProduct) {
           return {...state};

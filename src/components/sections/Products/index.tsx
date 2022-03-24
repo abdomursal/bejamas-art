@@ -4,7 +4,6 @@ import Card from "src/components/ui/Card";
 import PaginationBar from "src/components/ui/PaginationBar";
 import Filter from "src/components/sections/Filter";
 import styles from "./Products.module.css";
-import { useSelector, useDispatch } from "react-redux";
 import { Categories } from "src/constant/Category";
 import { Prices } from "src/constant/Prices";
 import NotFound from "../NotFound/NotFound";
@@ -12,17 +11,18 @@ import { filterCategory, filterPrice } from "src/utils/filterUtils";
 import { sortUtils } from "src/utils/sortUtils";
 import { getSortType } from "src/store/productsReducer";
 import { modalFilter } from "src/store/testReducer";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 const Products = ({isOpenModal}) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [data, setData] = useState([]);
   const [sortOrder, setSortOrder] = useState(false) // sort name/price orders 
-  const sortType = useSelector((state: any) => state.product.processedProducts.sortType);
-  const orignalProducts = useSelector((state: any) => state.product.products);
-  const page = useSelector((state: any) => state.pagination.pages);
-  const filterCategoryItems = useSelector((state: any) => state.product.processedProducts.filterCategoryItems);
-  const filterPriceItems = useSelector((state: any) => state.product.processedProducts.filterPriceItems);
-  const processedProducts = useSelector((state: any) => state.product.processedProducts.products);
+  const sortType = useAppSelector((state) => state.product.processedProducts.sortType);
+  const orignalProducts = useAppSelector((state) => state.product.products);
+  const page = useAppSelector((state) => state.pagination.pages);
+  const filterCategoryItems = useAppSelector((state) => state.product.processedProducts.filterCategoryItems);
+  const filterPriceItems = useAppSelector((state) => state.product.processedProducts.filterPriceItems);
+  const processedProducts = useAppSelector((state) => state.product.processedProducts.products);
 
   
   useEffect(() => {

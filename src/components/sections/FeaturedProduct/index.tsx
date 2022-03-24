@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "./FeaturedProduct.module.css";
 import Button from "src/components/ui/Button";
-import featuredImage from "public/images/featuredProduct.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { modalCart } from "src/store/testReducer";
 import { addCart } from "src/store/cartReducer";
-
-const myLoader = ({ src, width, quality }) => {
-  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
-};
+import { useAppSelector } from "src/store/hooks";
 
 const FeaturedProduct = () => {
-  const isFilterModalOpen= useSelector((state:any)=> state.modal.modalFilter)
-  const featuredProduct = useSelector(
-    (state: any) => state.product.featuredProduct
+  const isFilterModalOpen= useAppSelector((state)=> state.modal.modalFilter)
+  const featuredProduct = useAppSelector(
+    (state) => state.product.featuredProduct
   );
   const { name, details, category } = featuredProduct;
 
@@ -39,18 +35,11 @@ const FeaturedProduct = () => {
       </div>
       <div className={styles.featureImageWrapper}>
         <Image
-          // placeholder="blur"
-          // loader={myLoader}
-          // onLoadingComplete={() => myLoader}
           alt="Bejamas-featuredProduct"
-          // blurDataURL={`${featuredImage}`}
           src={
             "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
           }
-          // height={300}
-          // width={400}
           layout="fill"
-          // objectFit="cover"
         />
         <div className={styles.featureTagWrapper}>
           <a> Photo of the day</a>

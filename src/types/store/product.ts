@@ -4,7 +4,7 @@ import { processedProductTypes } from "./processedProducts";
 
 export interface ProductItemTypes {
     name: string;
-    category: CategoryTypes;
+    category: Record<string,any>;
     price: number;
     currency: string;
     image: {
@@ -32,6 +32,6 @@ export interface ProductItemTypes {
 
 export type ProductTypes = {
   products: Array<ProductItemTypes> | [];
-  featuredProduct: ProductItemTypes | [];
-  processedProducts: processedProductTypes | {};
+  featuredProduct: Record<string,any>;
+  processedProducts: Record<string,any> ;
 };

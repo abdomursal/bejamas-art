@@ -1,17 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import style from "./PaginationBar.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { changePage , storePage, storeCount} from "src/store/paginationReducer";
-import { getProducts, getfeaturedProduct, getCart } from 'src/lib/data'
+import { changePage , storeCount} from "src/store/paginationReducer";
+import { getProducts } from 'src/lib/data'
 import {storeData } from "src/store/productsReducer";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 
 const PaginationBar = () => {
-  const dispatch = useDispatch();
-  const currPage = useSelector((state: any) => state.pagination.activePage);
-  const pages = useSelector((state: any) => state.pagination.pages);
-  const count = useSelector((state: any) => state.pagination.count);
+  const dispatch = useAppDispatch();
+  const currPage = useAppSelector((state) => state.pagination.activePage);
+  const pages = useAppSelector((state) => state.pagination.pages);
+  const count = useAppSelector((state) => state.pagination.count);
 
   const getData = (page: number)=>{
     const products = getProducts(page);
